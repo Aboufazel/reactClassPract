@@ -26,9 +26,9 @@ function App() {
       <div>
           <form onSubmit={manageSubmit}>
               <label htmlFor={'title'}>Title:</label>
-              <input type={'text'} name={'des'} onChange={mangeEdit}/>
+              <input type={'text'} name={'title'} onChange={mangeEdit} value={form.title}/>
               <label htmlFor={'des'}>Des:</label>
-              <input type={'text'} name={'des'} onChange={mangeEdit}/>
+              <input type={'text'} name={'des'} onChange={mangeEdit} value={form.des}/>
               <button type={'submit'} style={{background: 'darkgreen' , border:0 , color:'white', marginLeft:10 , padding:4 , borderRadius:5}}>
                   save
               </button>
