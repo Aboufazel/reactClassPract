@@ -7,7 +7,7 @@ function App() {
       {id:Math.floor(Math.random()*1000) , title:'My second task', des: 'I want to buy a mackBook' , state:false},
   ]);
   const [form , setForm] = useState([
-      {title:'' , dec:'' , state:false}
+      {id : '0' ,title:'' , dec:'' , state:false}
   ])
    const [status , setStatus] = useState(['add'])
 
@@ -16,18 +16,31 @@ function App() {
   }
   const manageSubmit = e =>{
       e.preventDefault();
-      setState([...state , {id: Math.floor(Math.random()*1000) , title: form.title , des: form.des , state: false}]);
+      console.log(status);
+      if (status === 'add'){
+          setState([...state , {id: Math.floor(Math.random()*1000) , title: form.title , des: form.des , state: false}]);
+
+      } else {
+          setState(state.map(todo => todo.id === form.id ? form : todo))
+      }
       setForm({title:'' , dec:''});
+      setStatus('add');
+
   }
   const mangeEdit = e =>{
-      setForm({...form, [e.target.name]: e.target.value})
+      setForm({form , [e.target.name]: e.target.value});
   }
+const handelUpdate = todo =>{
+      setStatus('update');
+      setForm(todo);
+}
+
   return (
       <div>
-          <form onSubmit={manageSubmit}>
-              <label htmlFor={'title'}>Title:</label>
+          <form onSubmit={manageSubmit} style={{display:'flex' , justifyContent:'center' ,  marginTop:35}}>
+              <label htmlFor={'title'} style={{marginRight:5 , marginLeft:12 , fontWeight:'bold'} }>Title:</label>
               <input type={'text'} name={'title'} onChange={mangeEdit} value={form.title}/>
-              <label htmlFor={'des'}>Des:</label>
+              <label htmlFor={'des'} style={{marginRight:5 , marginLeft:12 , fontWeight:'bold'}}>Des:</label>
               <input type={'text'} name={'des'} onChange={mangeEdit} value={form.des}/>
               <button type={'submit'} style={{background: 'darkgreen' , border:0 , color:'white', marginLeft:10 , padding:4 , borderRadius:5}}>
                   save
