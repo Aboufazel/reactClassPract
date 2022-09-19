@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import React ,{useState} from "react";
 import './App.css';
 
 function App() {
+  const [state , setState] = useState([
+      {id:Math.floor(Math.random()*1000) , title:'My First task', des: 'I want to buy a milk' , state:false},
+      {id:Math.floor(Math.random()*1000) , title:'My second task', des: 'I want to buy a mackBook' , state:false},
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      state.map(todo =>(
+          <div>
+              <div>id: {todo.id}</div>
+              <div>title: {todo.title}</div>
+              <div>des: {todo.des}</div>
+              <div>id: {todo.id}</div>
+          </div>
+      ))
   );
 }
 
